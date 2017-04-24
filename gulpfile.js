@@ -37,8 +37,8 @@ gulp.task('docker:start',["docker:stop"], ()=>{
     .pipe(gulp.dest('output'));    
 });
 
-gulp.task('docker:full',["docker:compose", "docker:start"], ()=>{
-    
+gulp.task('docker:full',["docker:compose"], ()=>{
+    return gulp.start("docker:start");
 });
 
 gulp.task('docker:stop', (cb)=>{
@@ -47,7 +47,9 @@ gulp.task('docker:stop', (cb)=>{
     docker.listContainers(function (err, containers) {
         containers.forEach(function (containerInfo) {
             docker.getContainer(containerInfo.Id).stop(cb);
+            console.log("Stopped container: " +containerInfo.Id);
         });        
+       
     });  
     
 });

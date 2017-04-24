@@ -14,8 +14,8 @@ Step 5/7 : EXPOSE 80
  ---> 6397be9f4d0b
 Step 6/7 : COPY $source .
  ---> Using cache
- ---> db3b9fb18044
+ ---> 79c132d13f29
 Step 7/7 : ENTRYPOINT dotnet WebApplicationBasic.dll
  ---> Using cache
- ---> a2db89765f1e
-Successfully built a2db89765f1e
+ ---> 1693bcb50976
+Successfully built 1693bcb50976

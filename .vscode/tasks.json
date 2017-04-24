@@ -29,10 +29,10 @@
             "showOutput": "always"
         },
         {
-            "taskName": "gulp:dockerbuild",            
+            "taskName": "gulp:dockerfull",            
             "command": "gulp",
             "isShellCommand": true,            
-            "args": ["dockerbuild"],
+            "args": ["docker:full"],
             "isBuildCommand":false,
             "showOutput": "always"
         }
