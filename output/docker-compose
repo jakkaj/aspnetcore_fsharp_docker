@@ -1,0 +1,22 @@
+Step 1/7 : FROM microsoft/aspnetcore:1.0
+ ---> b10a32b6c905
+Step 2/7 : LABEL Name aspnetcore_fsharp_docker Version 0.0.1
+ ---> Using cache
+ ---> 41a53d19901d
+Step 3/7 : ARG source
+ ---> Using cache
+ ---> 6d567792b4fd
+Step 4/7 : WORKDIR /app
+ ---> Using cache
+ ---> 9fe734146d1e
+Step 5/7 : EXPOSE 80
+ ---> Using cache
+ ---> 6397be9f4d0b
+Step 6/7 : COPY $source .
+ ---> db3b9fb18044
+Removing intermediate container ae92e0398c52
+Step 7/7 : ENTRYPOINT dotnet WebApplicationBasic.dll
+ ---> Running in 24fd778595cd
+ ---> a2db89765f1e
+Removing intermediate container 24fd778595cd
+Successfully built a2db89765f1e

@@ -1,0 +1,24 @@
+{
+  "name": "aspnetcore_fsharp_docker",
+  "version": "1.0.0",
+  "description": "This project demonstrates how to create a new F# based ASP.NET web project and deploy it in to a docker container.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakkaj/aspnetcore_fsharp_docker.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jakkaj/aspnetcore_fsharp_docker/issues"
+  },
+  "homepage": "https://github.com/jakkaj/aspnetcore_fsharp_docker#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-dotnet-cli": "^0.2.1",
+    "gulp-run": "^1.7.1"
+  }
+}

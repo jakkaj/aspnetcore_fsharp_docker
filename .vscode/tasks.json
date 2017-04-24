@@ -27,6 +27,14 @@
             "args": ["run", "-t", "-P", "-d", "aspnetcore_fsharp_docker"],
             "isBuildCommand":false,
             "showOutput": "always"
+        },
+        {
+            "taskName": "gulp:dockerbuild",            
+            "command": "gulp",
+            "isShellCommand": true,            
+            "args": ["dockerbuild"],
+            "isBuildCommand":false,
+            "showOutput": "always"
         }
     ]
 
