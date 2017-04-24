@@ -16,6 +16,7 @@ Before you begin, you'll need to install these things.
     - [Bower](https://www.npmjs.com/package/bower) NPM Package
     - [yo](https://www.npmjs.com/package/yo) NPM Package
     - [generator-aspnet](https://www.npmjs.com/package/generator-aspnet) NPM Package
+    - [Gulp](https://www.npmjs.com/package/gulp)
     
 
 ## Note on Windows Bash   
@@ -38,6 +39,8 @@ Once node is running, install ```bower```, ```yo``` and ```generator-aspnet```.
 ``` npm install -g generator-aspnet```
 
 ```npm install -g bower```
+
+```npm install -g gulp```
 
 ## Generate the startup project 
 
@@ -159,10 +162,48 @@ In your terminal (Powershell, bash etc. ) type ```dotnet publish```. This will c
 
 Now you're ready to run some docker commands to build the app. You can do this from the terminal, or you could install the [Docker extension for Visual Studio Code ](https://code.visualstudio.com/docs/languages/dockerfile).  
 
+### Docker build
+
+Before you can run a docker container you need to build it. 
+
+```docker build -t <containerName> .```
+
+Then you can start the docker container. 
+
+```docker run -t -P -d <containerName>```
+
+Now you can view the site running in docker. But first you'll need to know where to look for it!
+
+It changes a little depending on your OS becasue of the way the docker vm runs. On Mac for example the docker virtual machine runs on another IP that you need to find: 
+
+```docker-machine ip``` will five you this IP. 
+
+ On Windows, it's in Hyper-V so you don't need to worry about that. 
+
+ Then you need to find the port that your image is running on. 
+
+ ```docker ps``` will show you all running docker processes - including their ports - navigate to the machine ip / or localhost (on Windows) : port number and you should see your site!
+
+ #### Note on Mac - you may need to run a command in each terminal instance for it to know how to talk to docker. If you're  getting issues like cannot find the docker-machine - type this before trying again: ```eval "$(docker-machine env default)"```.
 
 
 
 
+## Special Note RE Terminals
+I mentioned it a few times throughout this artical but just to be double sure: You cannot do a ```dotnet restore``` on Linux (i.e. bash.exe inside Code etc) and then "F5" run it in Code as the Linux restore will load the Linux bits (nugets, runtimes etc.) but Code will try and run it using Windows bits. This is not a problem on Mac. 
 
-##Special Note RE Terminals
-I mentioned it a few times throughout this artical but just to be double sure: You cannot do a ```dotnet restore``` on Linux (i.e. bash.exe inside Code etc) and then "F5" run it in Code as the Linux restore will load the Linux bits (nugets, runtimes etc.) but Code will try and run it using Windows bits. 
+## Gulping things
+
+The process to build the code, publish it,  compose the docker container,s top old containers and run the new container version can be a bit time consuming and is not great for quick development iteration. 
+
+I've added a sample [gulpfile](https://github.com/jakkaj/aspnetcore_fsharp_docker/blob/master/gulpfile.js) that can help with this. It contains a series of gulp tasks that can be run to help build the bits. 
+
+You can run ```gulp docker:full``` to to the lot - build the app, publish, compose and run (and stop old ones! Careful, the code will stop all running containers!). 
+
+Browse the gulp file for other tasks that you can run separately. 
+
+These tasks can be linked an run from VSCode tasks - see the [tasks.json](https://github.com/jakkaj/aspnetcore_fsharp_docker/blob/master/.vscode/tasks.json) file for examples. 
+
+
+## Special Note RE Terminals
+I mentioned it a few times throughout this artical but just to be double sure: You cannot do a ```dotnet restore``` on Linux (i.e. bash.exe inside Code etc) and then "F5" run it in Code as the Linux restore will load the Linux bits (nugets, runtimes etc.) but Code will try and run it using Windows bits. This is not a problem on Mac. 
