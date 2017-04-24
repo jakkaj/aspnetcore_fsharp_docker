@@ -13,10 +13,9 @@ Step 5/7 : EXPOSE 80
  ---> Using cache
  ---> 6397be9f4d0b
 Step 6/7 : COPY $source .
+ ---> Using cache
  ---> db3b9fb18044
-Removing intermediate container ae92e0398c52
 Step 7/7 : ENTRYPOINT dotnet WebApplicationBasic.dll
- ---> Running in 24fd778595cd
+ ---> Using cache
  ---> a2db89765f1e
-Removing intermediate container 24fd778595cd
 Successfully built a2db89765f1e

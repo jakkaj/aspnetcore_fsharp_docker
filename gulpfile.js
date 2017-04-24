@@ -3,22 +3,22 @@ var {restore, build, test, pack, publish} = require('gulp-dotnet-cli');
 
 var run = require('gulp-run');
 
-gulp.task('dockerbuild',["dotnetbuild"], ()=>{
+gulp.task('dotnet:publish',["dotnet:build"], ()=>{
     return gulp.src('src/WebApplicationBasic.fsproj', {read: false})
                 .pipe(publish());
 })
 
-gulp.task('dotnetbuild',["dotnetrestore"], ()=>{
+gulp.task('dotnet:build',["dotnet:restore"], ()=>{
     return gulp.src('src/WebApplicationBasic.fsproj', {read: false})
                 .pipe(restore());
 })
 
-gulp.task('dotnetrestore', ()=>{
+gulp.task('dotnet:restore', ()=>{
     return gulp.src('src/WebApplicationBasic.fsproj', {read: false})
                 .pipe(restore());
 })
 
-gulp.task('docker:compose', ()=>{
+gulp.task('docker:compose',["dotnet:publish"], ()=>{
     return run('docker-compose build').exec()    // prints "Hello World\n". 
     .pipe(gulp.dest('output')) ;     // writes "Hello World\n" to output/echo. 
   
