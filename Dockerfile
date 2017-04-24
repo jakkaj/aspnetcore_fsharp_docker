@@ -1,5 +1,5 @@
 
-FROM microsoft/aspnetcore:1.0
+FROM microsoft/aspnetcore:1.0.4
 LABEL Name=aspnetcore_fsharp_docker Version=0.0.1 
 ARG source
 WORKDIR /app

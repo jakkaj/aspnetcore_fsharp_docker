@@ -1,3 +1,6 @@
+//sometimes need this on mac. 
+//eval "$(docker-machine env default)"
+
 var gulp = require('gulp');
 var {restore, build, test, pack, publish} = require('gulp-dotnet-cli');
 
