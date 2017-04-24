@@ -254,3 +254,5 @@ paket-files/
 
 #mine
 src/wwwroot/lib/*
+output/*
+bower_components

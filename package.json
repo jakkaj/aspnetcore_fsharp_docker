@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/jakkaj/aspnetcore_fsharp_docker#readme",
   "devDependencies": {
+    "dockerode": "^2.4.3",
     "gulp": "^3.9.1",
     "gulp-dotnet-cli": "^0.2.1",
     "gulp-run": "^1.7.1"
