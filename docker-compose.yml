@@ -1,0 +1,13 @@
+
+version: '2'
+
+services:
+  aspnetcore_fsharp_docker:
+    image: aspnetcore_fsharp_docker:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        source: ./src/bin/Debug/netcoreapp1.0/publish
+    ports:
+      - 80:80
