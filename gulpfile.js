@@ -49,10 +49,10 @@ gulp.task('docker:stop', (cb)=>{
     
     docker.listContainers(function (err, containers) {
         containers.forEach(function (containerInfo) {
-            docker.getContainer(containerInfo.Id).stop(cb);
+            docker.getContainer(containerInfo.Id).stop();
             console.log("Stopped container: " +containerInfo.Id);
         });        
-       
+       cb();
     });  
     
 });
