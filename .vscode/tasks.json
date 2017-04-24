@@ -2,16 +2,33 @@
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
     "version": "0.1.0",
-    "command": "dotnet",
-    "isShellCommand": true,
-    "args": [],
+
     "tasks": [
         {
             "taskName": "build",
-            "args": ["./src" ],
-            "isBuildCommand": true,
-            "showOutput": "silent",
-            "problemMatcher": "$msCompile"
+            "command": "dotnet",
+            "isShellCommand": true,
+            "args": ["build", "./src"],
+            "isBuildCommand":true,
+            "showOutput": "always"
+        },
+        {
+            "taskName": "publish",            
+            "command": "dotnet",
+            "isShellCommand": true,            
+            "args": ["publish", "./src"],
+            "isBuildCommand":false,
+            "showOutput": "always"
+        },
+        {
+            "taskName": "docker:run",            
+            "command": "docker",
+            "isShellCommand": true,            
+            "args": ["run", "-t", "-P", "-d", "aspnetcore_fsharp_docker"],
+            "isBuildCommand":false,
+            "showOutput": "always"
         }
     ]
+
+   
 }
