@@ -17,7 +17,7 @@ gulp.task('dotnet:publish',["dotnet:build", "bower:install"], ()=>{
 
 gulp.task('dotnet:build',["dotnet:restore"], ()=>{
     return gulp.src('src/WebApplicationBasic.fsproj', {read: false})
-                .pipe(restore());
+                .pipe(build());
 })
 
 gulp.task('dotnet:restore', ()=>{
@@ -47,12 +47,25 @@ gulp.task('docker:full',["docker:compose"], ()=>{
 gulp.task('docker:stop', (cb)=>{
     var docker = new Docker();
     
-    docker.listContainers(function (err, containers) {
-        containers.forEach(function (containerInfo) {
-            docker.getContainer(containerInfo.Id).stop();
-            console.log("Stopped container: " +containerInfo.Id);
-        });        
-       cb();
-    });  
+    var p = new Promise((good, bad)=>{
+        docker.listContainers(function (err, containers) {
+            
+            var promises = [];
+
+            for(var i in containers){
+                var containerInfo = containers[i];
+                promises.push(new Promise((dockerGood, dockerBad)=>{
+                       docker.getContainer(containerInfo.Id).stop(dockerGood);
+                       console.log("Stopped container: " +containerInfo.Id);
+                }));           
+            
+            }
+            Promise.all(promises).then(good);             
+        });  
+    });
+  
+    p.then(()=>{
+        cb();
+    });
     
 });
